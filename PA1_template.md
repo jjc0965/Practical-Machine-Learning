@@ -1,8 +1,8 @@
 Title: "Number of steps taken in 5 minute intervals"  
 Author: "John J. Como, MD, MPH"  
 Date: "Sunday, May 17, 2015"  
-Output: html_document
-self.contained: FALSE
+Output: html_document  
+self.contained: FALSE  
 _______________________________________________________________________________________________________________________
 
 LOADING AND PREPROCESSING THE DATA  
