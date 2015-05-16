@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 Title: "Number of steps taken in 5 minute intervals"  
 Author: "John J. Como, MD, MPH"  
 Date: "Sunday, May 17, 2015"  
-Output: html_document 
+Output: html_document
+self.contained: FALSE
 _______________________________________________________________________________________________________________________
 
 LOADING AND PREPROCESSING THE DATA  
@@ -131,30 +131,3 @@ mean_steps_per_interval_WE<-aggregate(datasetWE[1], by=datasetWE[3], mean, na.rm
 plot(mean_steps_per_interval_WE, type="l", xaxt='n', main="Mean # Steps/5-minute Interval - WEEKENDS, NAs Averaged Out", xlab="5-minute interval")
 axis(side=1, at=c(0,400,800,1200,1600,2000,2400), labels=c("MN","4AM","8AM","NOON","4PM","8PM","MN"))
 ```
-=======
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
-
-
-## Loading and preprocessing the data
-
-
-
-## What is mean total number of steps taken per day?
-
-
-
-## What is the average daily activity pattern?
-
-
-
-## Imputing missing values
-
-
-
-## Are there differences in activity patterns between weekdays and weekends?
->>>>>>> 80edf39c3bb508fee88e3394542f967dd3fd3270
