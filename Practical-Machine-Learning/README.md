@@ -1,0 +1,1 @@
+These are the files for the course project for Practical Machine Learning.
