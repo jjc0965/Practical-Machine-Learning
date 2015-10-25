@@ -2,7 +2,7 @@
 title: "Practical Machine Learning Project"
 author: "John J. Como, MD, MPH"
 date: "October 25, 2015"
-output: html_document
+output: pdf_document
 ---
 
 Background
@@ -80,7 +80,7 @@ The random forest predictor was then used on the "test" data (4904 variables).  
 predRF<-predict(modFit, test)
 confusionMatrix(predRF, test$classe)
 ```
-The out of sample error is the error you get on a new data set.  This will always be greater than in sample error.  The accuracy of the model is 0.993, indicate=ing that the prediction model is also very accurate on the testing set.
+The out of sample error is the error you get on a new data set.  This will always be greater than in sample error.  The accuracy of the model is 0.993, indicating that the prediction model is also very accurate on the testing set.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 

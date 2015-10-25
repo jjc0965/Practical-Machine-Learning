@@ -1,1 +1,1 @@
-These are the files for the course project for Practical Machine Learning.
+These are the files for the course project for Practical Machine Learning. The HTML file would not present in a viewable format, so I added a PDF file which shows more clearly the work that I did.

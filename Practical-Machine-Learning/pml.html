@@ -71,14 +71,17 @@ img {
 <p>Background</p>
 <p>Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it.</p>
 <p>In this project, my goal was to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways.</p>
-<p>More information is available from the website here: <a href="http://groupware.les.inf.puc-rio.br/har" class="uri">http://groupware.les.inf.puc-rio.br/har</a> (see the section on the Weight Lifting Exercise Dataset). _______________________________________________________________________________________</p>
+<div id="more-information-is-available-from-the-website-here-httpgroupware.les.inf.puc-rio.brhar-see-the-section-on-the-weight-lifting-exercise-dataset." class="section level2">
+<h2>More information is available from the website here: <a href="http://groupware.les.inf.puc-rio.br/har" class="uri">http://groupware.les.inf.puc-rio.br/har</a> (see the section on the Weight Lifting Exercise Dataset).</h2>
 <p>Data</p>
 <p>The training data for this project were available here:</p>
 <p><a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv" class="uri">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a></p>
 <p>The test data were available here:</p>
 <p><a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv" class="uri">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a></p>
 <p>Both of these files were downloaded into the working directory, generating the two files: 1) pml-training.csv 2) pml-testing.csv</p>
-<p>The data for this project came from this source: <a href="http://groupware.les.inf.puc-rio.br/har" class="uri">http://groupware.les.inf.puc-rio.br/har</a>. _______________________________________________________________________________________</p>
+</div>
+<div id="the-data-for-this-project-came-from-this-source-httpgroupware.les.inf.puc-rio.brhar." class="section level2">
+<h2>The data for this project came from this source: <a href="http://groupware.les.inf.puc-rio.br/har" class="uri">http://groupware.les.inf.puc-rio.br/har</a>.</h2>
 <p>First, I read in the training and the testing data from the respective csv files. I changed all missing data to type “NA”.</p>
 <pre class="r"><code>training&lt;-read.csv(&quot;pml-training.csv&quot;, na.strings=c(&quot;#DIV/0!&quot;, &quot;&quot;, &quot;NA&quot;))
 testing&lt;-read.csv(&quot;pml-testing.csv&quot;, na.strings=c(&quot;#DIV/0!&quot;, &quot;&quot;, &quot;NA&quot;))
@@ -99,8 +102,9 @@ dim(training)</code></pre>
 <pre class="r"><code>dim(testing)</code></pre>
 <pre><code>## [1] 20 52</code></pre>
 <p>Now the training file has 53 variables (includes the dependent variable “classe”), and the testing file has 52.</p>
-<p>The seed is set for reproducibility.</p>
+<p>In cross-validation, we use the training set, we split it into training/test sets, we build a model on the training set, and we evaluate this model on the test set.</p>
 <p>Three-fourths of the data is set to be training data (“train”), and one-fourth is testing data (“test”). This latter “test” data, which contains 4904 observations, is not to be confused with the 20 test cases referred to above. The “train” data contains 14718 observations.</p>
+<p>The seed is set for reproducibility.</p>
 <pre class="r"><code>set.seed(125)
 library(caret)</code></pre>
 <pre><code>## Loading required package: lattice
@@ -129,7 +133,8 @@ modFit</code></pre>
 ## C    0   16 2546    5    0 0.0081807557
 ## D    0    0   23 2387    2 0.0103648425
 ## E    0    0    1    7 2698 0.0029563932</code></pre>
-<p>The random forest predictor was then used on the “test” data (4904 variables). Another confusion matrix was generated.</p>
+<p>The OOB (out of bag) error estimate is very low at 0.53%. This indicates that the prediction model is accurate on the training set.</p>
+<p>The random forest predictor was then used on the “test” data (4904 variables). Another confusion matrix was generated. We do not expect this error to be as small as the error on the training set.</p>
 <pre class="r"><code>predRF&lt;-predict(modFit, test)
 confusionMatrix(predRF, test$classe)</code></pre>
 <pre><code>## Confusion Matrix and Statistics
@@ -163,6 +168,8 @@ confusionMatrix(predRF, test$classe)</code></pre>
 ## Detection Rate         0.2845   0.1923   0.1727   0.1623   0.1829
 ## Detection Prevalence   0.2855   0.1939   0.1746   0.1631   0.1829
 ## Balanced Accuracy      0.9993   0.9958   0.9942   0.9945   0.9978</code></pre>
+<p>The out of sample error is the error you get on a new data set. This will always be greater than in sample error. The accuracy of the model is 0.993, indicating that the prediction model is also very accurate on the testing set.</p>
+<hr />
 <p>The algorithm was then applied to the 20 test cases. Files containing the predictions are written to the working directory.</p>
 <pre class="r"><code>predictionAssignment&lt;-as.character(predict(modFit, testing))
 
@@ -178,6 +185,7 @@ predictionAssignment</code></pre>
 <pre><code>##  [1] &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;A&quot; &quot;E&quot; &quot;D&quot; &quot;B&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;B&quot; &quot;A&quot; &quot;E&quot; &quot;E&quot; &quot;A&quot;
 ## [18] &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
 <pre class="r"><code>pml_write_files(predictionAssignment)</code></pre>
+</div>
 
 
 </div>
